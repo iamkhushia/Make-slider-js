@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+        integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <style>
+        .main {
+            margin: 2% 42%;
+        }
+
+        input {
+            border: 0;
+            outline: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 align="center">Table Data</h2>
+
+    <div class="main d-flex justify-content-center mb-3">
+        <input type="search" id="searchInput" placeholder="search" class="bg-light p-1 me-2">
+        <button id="searchButton" class="btn bg-light" onclick="filterData()">
+            <i class="fa-solid fa-magnifying-glass me-2"></i>
+        </button>
+    </div>
+
+    <table class="table text-center mt-5" border="1">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>City</th>
+                <th>Salary</th>
+                <th>Degree</th>
+                <th>Department</th>
+            </tr>
+        </thead>
+        <tbody id="rowdata"></tbody>
+    </table>
+
+    <script>
+        let record = [
+            {
+                id: 1,
+                name: "ashish",
+                email: "ashu@gmail.com",
+                phone: "1121212",
+                city: "surat",
+                salary: 20000,
+                degi: "senior",
+                dep: "programming",
+            },
+            {
+                id: 2,
+                name: "khushi",
+                email: "khushi@gmail.com",
+                phone: "5454545",
+                city: "surat",
+                salary: 22000,
+                degi: "junior",
+                dep: "ui/ux",
+            },
+            {
+                id: 3,
+                name: "rajvi",
+                email: "rajvi@gmail.com",
+                phone: "454545",
+                city: "vadodara",
+                salary: 25000,
+                degi: "junior",
+                dep: "bde",
+            },
+            {
+                id: 4,
+                name: "deepali",
+                email: "deepali@gmail.com",
+                phone: "565656",
+                city: "vapi",
+                salary: 30000,
+                degi: "tl",
+                dep: "webdesign",
+            },
+            {
+                id: 5,
+                name: "kruti",
+                email: "kruti@gmail.com",
+                phone: "5565656",
+                city: "rajkot",
+                salary: 20000,
+                degi: "senior",
+                dep: "programming",
+            },
+            {
+                id: 6,
+                name: "jayna",
+                email: "jayna@gmail.com",
+                phone: "5565656",
+                city: "vapi",
+                salary: 25000,
+                degi: "manager",
+                dep: "ui/ux",
+            },
+        ];
+
+        let filteredData = record; // Initialize global variable with all data
+
+        function viewTableData() {
+            let index = 0;
+            let data = "";
+            filteredData.forEach((val) => {
+                data += `<tr>
+                      <td>${++index}</td>
+                      <td>${val.name}</td>
+                      <td>${val.email}</td>
+                      <td>${val.phone}</td>
+                      <td>${val.city}</td>
+                      <td>${val.salary}</td>
+                      <td>${val.degi}</td>
+                      <td>${val.dep}</td>
+                </tr>`;
+            });
+            document.getElementById("rowdata").innerHTML = data;
+        }
+
+        function filterData() {
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            filteredData = record.filter(item =>
+                item.name.toLowerCase().includes(searchInput) ||
+                item.email.toLowerCase().includes(searchInput) ||
+                item.city.toLowerCase().includes(searchInput) ||
+                item.salary.toString().includes(searchInput)
+            );
+            viewTableData();
+        }
+
+        // Initial view of table data
+        viewTableData();
+    </script>
+</body>
+
+</html>
